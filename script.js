@@ -178,10 +178,15 @@ updateCounter();
 // --- LÓGICA DO GERADOR DE MOTIVOS ---
 const reasons = [
     "Seu jeitinho calmo.",
-    "É Master Chef.",
     "É linda e bem feita que Deus benza.",
-    "O seu abraço é o meu lugar favorito.",
-    "Como você faz até os dias comuns parecerem especiais."
+    "Me aconselha e me apoia.",
+    "Tem um coração generoso.",
+    "Ama animais.",
+    "Tem o sorriso mais lindo das galáxias.",
+    "Tem visão de futuro.",
+    "Muito educada e inteligente.",
+    "Respeita nosso relacionamento.",
+    "Com você faz até os dias comuns parecerem especiais."
 ];
 
 const reasonBtn = document.getElementById('reason-btn');
@@ -189,7 +194,7 @@ const reasonText = document.getElementById('reason-text');
 
 reasonBtn.addEventListener('click', () => {
     const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
-    reasonText.textContent = `"${randomReason}"`;
+    reasonText.textContent = `${randomReason}`;
 });
 
 // --- LÓGICA DO NOVO SLIDESHOW (Pilha 3D) ---
