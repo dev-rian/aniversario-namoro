@@ -15,6 +15,12 @@ const playlist = [
         cover: "img/capa-spotify.jpg"
     },
     {
+        title: "Ainda Bem",
+        artist: "Thiaguinho",
+        file: "audio/musica4.mp3",
+        cover: "img/capa-spotify.jpg"
+    },
+    {
         title: "Duas Metades",
         artist: "Jorge & Mateus",
         file: "audio/musica3.mp3",
@@ -22,14 +28,14 @@ const playlist = [
     },
     {
         title: "Ainda Bem",
-        artist: "Thiaguinho",
-        file: "audio/musica4.mp3",
+        artist: "Grupo Menos é Mais",
+        file: "audio/musica5.mp3",
         cover: "img/capa-spotify.jpg"
     },
     {
         title: "Um Beijo por Minuto",
         artist: "Natanzinho Lima",
-        file: "audio/musica5.mp3",
+        file: "audio/musica6.mp3",
         cover: "img/capa-spotify.jpg"
     }
 ];
