@@ -133,7 +133,7 @@ loadSong(playlist[currentSongIndex]);
 
 // --- LÓGICA DO CONTADOR (Exata com Calendário) ---
 // Data do pedido de namoro: 06/04/2025 às 16:30
-const startDate = new Date('2025-04-05T17:30:00');
+const startDate = new Date('2025-04-06T00:00:00');
 
 
 function updateCounter() {
