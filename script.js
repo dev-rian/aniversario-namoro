@@ -207,7 +207,9 @@ const reasons = [
     "Tem visão de futuro.",
     "Muito educada e inteligente.",
     "Respeita nosso relacionamento.",
-    "Com você faz até os dias comuns parecerem especiais."
+    "Com você faz até os dias comuns parecerem especiais.",
+    "Me aproxima de Deus.",
+    "Dança muito bem."
 ];
 
 const reasonBtn = document.getElementById('reason-btn');
