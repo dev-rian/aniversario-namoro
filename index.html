@@ -24,9 +24,17 @@
         <audio id="our-song" src="audio/musica1.mp3"></audio>
         
         <div class="controls">
-            <button id="prev-music-btn" class="secondary-btn">⏮</button>
-            <button id="play-pause-btn" class="play-btn">▶</button>
-            <button id="next-music-btn" class="secondary-btn">⏭</button>
+            <button id="prev-music-btn" class="secondary-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+            </button>
+            
+            <button id="play-pause-btn" class="play-btn">
+                <svg id="play-icon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            
+            <button id="next-music-btn" class="secondary-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+            </button>
         </div>
     </div>
 </section>
@@ -38,9 +46,9 @@
     </section>
 
     <section class="stats-section">
-        <h2>Estatísticas do Nosso Amor</h2>
+        <h2>Estatísticas</h2>
         <div class="stats-grid">
-            <div class="stat-card"><h3>12</h3><p>Meses Incríveis</p></div>
+            <div class="stat-card"><h3 id="total-months">12</h3><p>Meses Incríveis</p></div>
             <div class="stat-card"><h3>+5.000</h3><p>"Eu te amo"</p></div>
             <div class="stat-card"><h3>∞</h3><p>Motivos para sorrir</p></div>
         </div>
@@ -51,33 +59,39 @@
         <div class="timeline">
             <div class="timeline-item left">
                 <div class="content">
-                    <img src="img/pedido-namoro.jpg" alt="Pedido de namoro">
-                    <p>06/04/2025<br>O "Sim" que mudou tudo.</p>
-                </div>
+                <img src="img/pedido-namoro.jpg" alt="...">
+                <div class="text-group"> <span class="date">06/04/2025</span> <p>O "Sim" que mudou tudo.</p> </div>
+            </div>
             </div>
             <div class="timeline-item left">
                 <div class="content">
                     <img src="img/forro.jpg" alt="Momento feliz">
-                    <p>12/06/2025<br>Nosso primeiro forró.</p>
+                    <div class="text-group"> <span class="date">12/06/2025</span> <p>Nosso primeiro forró.</p> </div>
                 </div>
             </div>
             <div class="timeline-item right">
                 <div class="content">
                     <img src="img/viagem.jpg" alt="Viagem">
-                    <p>06/07/2025<br>Nossa primeira viagem juntos.</p>
+                    <div class="text-group"> <span class="date">06/07/2025</span> <p>Nossa primeira viagem juntos.</p> </div>
                 </div>
             </div>
             <div class="timeline-item right">
                 <div class="content">
-                    <img src="img/alianca-frei.jpeg" alt="Aliança">
-                    <p>10/10/2025<br>Nossa aliança.</p>
+                    <img src="img/alianca.jpeg" alt="Aliança">
+                    <div class="text-group"> <span class="date">10/10/2025</span> <p>Nossa aliança.</p> </div>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="content">
+                    <img src="img/maos-dadas.jpeg" alt="Maos dadas na praia">
+                    <div class="text-group"> <span class="date">10/10/2025</span> <p>Juntos na praia.</p> </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="slideshow-section">
-        <h2>Nossos Melhores Momentos</h2>
+        <h2>Nossa Galeria</h2>
         <div class="slideshow-container">
         <div class="slideshow-track">
             <div class="slide"><img src="img/alianca-frei.jpeg" alt="Slide 1"></div>

@@ -5,7 +5,7 @@
 const playlist = [
     {
         title: "Minha Namorada",
-        artist: "Kamiza 10",
+        artist: "Kamisa 10",
         file: "audio/musica1.mp3",
         cover: "img/capa-spotify.jpg"
     },
@@ -25,6 +25,12 @@ const playlist = [
         title: "Ainda Bem",
         artist: "Thiaguinho",
         file: "audio/musica4.mp3",
+        cover: "img/capa-spotify.jpg"
+    },
+    {
+        title: "Um Beijo por Minuto",
+        artist: "Natanzinho Lima",
+        file: "audio/musica5.mp3",
         cover: "img/capa-spotify.jpg"
     }
 ];
@@ -104,28 +110,63 @@ audio.addEventListener('ended', nextSong);
 loadSong(playlist[currentSongIndex]);
 
 
-const startDate = new Date('2025-04-06T17:30:00');
+// --- LÓGICA DO CONTADOR (Exata com Calendário) ---
+// Data do pedido de namoro: 06/04/2025 às 16:30
+const startDate = new Date('2025-04-05T17:30:00');
+
 
 function updateCounter() {
     const now = new Date();
-    let diff = now - startDate
 
-    if (diff < 0) diff = 0; // Previne números negativos se abrir antes da data
+    // Cálculo inicial das diferenças brutas
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let minutes = now.getMinutes() - startDate.getMinutes();
+    let seconds = now.getSeconds() - startDate.getSeconds();
 
-    const seconds = Math.floor((diff / 1000) % 60);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    // Ajuste "emprestando" tempo do valor maior
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+    }
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+    }
+    if (hours < 0) {
+        hours += 24;
+        days--;
+    }
+
+    // Se os dias forem negativos, precisamos saber quantos dias tinha o mês anterior
+    if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+    }
+
+    // Se os meses forem negativos, tira um ano
+    if (months < 0) {
+        months += 12;
+        years--;
+    }
+
+    // --- NOVA LÓGICA: Calcula o total real de meses ---
+    const totalMonths = (years * 12) + months;
     
-    const years = Math.floor(days / 365);
-    const remainingDaysAfterYears = days % 365;
-    const months = Math.floor(remainingDaysAfterYears / 30);
-    const finalDays = remainingDaysAfterYears % 30;
+    // Atualiza o card de "Meses Incríveis" nas Estatísticas
+    const totalMonthsElement = document.getElementById('total-months');
+    if (totalMonthsElement) {
+        totalMonthsElement.innerText = totalMonths;
+    }
+    // --------------------------------------------------
 
     document.getElementById('timer').innerHTML = `
         <div class="counter-item"><span>${years}</span> Anos</div>
         <div class="counter-item"><span>${months}</span> Meses</div>
-        <div class="counter-item"><span>${finalDays}</span> Dias</div>
+        <div class="counter-item"><span>${days}</span> Dias</div>
         <div class="counter-item"><span>${hours}</span> Horas</div>
         <div class="counter-item"><span>${minutes}</span> Min</div>
         <div class="counter-item"><span>${seconds}</span> Seg</div>
@@ -136,9 +177,9 @@ updateCounter();
 
 // --- LÓGICA DO GERADOR DE MOTIVOS ---
 const reasons = [
-    "O seu sorriso ilumina meu dia.",
-    "A forma como você me apoia em tudo.",
-    "Nossas risadas juntos.",
+    "Seu jeitinho calmo.",
+    "É Master Chef.",
+    "É linda e bem feita que Deus benza.",
     "O seu abraço é o meu lugar favorito.",
     "Como você faz até os dias comuns parecerem especiais."
 ];

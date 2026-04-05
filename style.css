@@ -120,44 +120,123 @@ section {
 .stat-card { background: var(--card-bg); padding: 20px; border-radius: 10px; width: 150px; }
 .stat-card h3 { color: var(--accent-color); font-size: 1.8rem; margin: 0; }
 
-/* Linha do Tempo Vertical */
+/* --- NOVA LÓGICA DA LINHA DO TEMPO (VERTICAL CENTRALIZADA E SEM LINHA) --- */
+.timeline-section {
+    padding: 60px 20px;
+    background-color: var(--bg-color);
+}
+
 .timeline {
     position: relative;
-    max-width: 800px;
+    max-width: 600px; /* Largura ideal para layout vertical centralizado */
     margin: 0 auto;
+    padding: 20px 0;
 }
+
+/* 1. REMOVE A LINHA VERDE LATERAL (ANTIGA ::after) */
 .timeline::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background-color: var(--accent-color);
-    top: 0; bottom: 0; left: 50%;
-    margin-left: -2px;
+    display: none !important; /* Garante que ela sumiu */
+    content: none !important;
 }
+
+/* Container de cada item - Agora todos centralizados e sem padding lateral */
 .timeline-item {
-    padding: 10px 40px;
     position: relative;
-    width: 50%;
+    width: 100%;
+    margin-bottom: 40px; /* Espaço entre os cards */
+    padding: 0; /* Remove padding lateral antigo que dava espaço para a linha */
     box-sizing: border-box;
-}
-.timeline-item.left { left: 0; text-align: right; }
-.timeline-item.right { left: 50%; text-align: left; }
-.content {
-    padding: 20px;
-    background-color: var(--card-bg);
-    border-radius: 10px;
     display: flex;
-    align-items: center;
-    gap: 15px;
+    justify-content: center; /* Centraliza o card na tela */
 }
-.timeline-item.left .content { flex-direction: row; }
-.timeline-item.right .content { flex-direction: row-reverse; }
-.content img { width: 150px; border-radius: 10px; }
+
+/* Remove qualquer lógica de ziguezague antiga */
+.timeline-item.left,
+.timeline-item.right {
+    left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilo do Card de Conteúdo - Força layout VERTICAL (coluna) */
+.content {
+    padding: 25px;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column; /* <-- FORÇA FOTO EM CIMA, TEXTO EMBAIXO EM TODOS OS DISPOSITIVOS */
+    align-items: center; /* <-- CENTRALIZA TUDO HORIZONTALMENTE DENTRO DO CARD */
+    gap: 15px; /* Espaço entre elementos */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    width: 100%; /* Ocupa a largura do item */
+    max-width: 400px; /* Limita a largura máxima do card individual */
+}
+
+/* Estilo da Imagem (Centralizada no topo) */
+.content img {
+    width: 100%; /* Ocupa a largura total do card (menos padding) */
+    max-width: 350px; /* Evita que fique gigante em telas grandes */
+    height: auto; /* Mantém proporção original */
+    aspect-ratio: 3/4; /* Mantém proporção vertical bonita como na imagem anterior */
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Grupo de Texto centralizado */
+.content .text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza a data e o texto */
+    gap: 5px;
+    text-align: center; /* Garante centralização do texto */
+}
+
+/* 2. ESTILO DA DATA (MENOR E CENTRALIZADA) */
+.content .date {
+    font-size: 0.8rem; /* <-- FONTE PEQUENA (ajuste aqui se quiser ainda menor) */
+    color: #b3b3b3; /* Cinza suave para contraste (opcional) */
+    font-weight: 600; /* Levemente negrito */
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilo do Texto (Normal e Centralizado) */
+.content p {
+    margin: 0;
+    font-size: 1.1rem; /* Fonte normal */
+    color: var(--text-color);
+    line-height: 1.4;
+    font-weight: 400; /* Peso normal */
+}
+
+/* --- AJUSTES RESPONSIVOS PARA CELULAR --- */
 @media screen and (max-width: 600px) {
-    .timeline::after { left: 31px; }
-    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left; left: 0; }
-    .timeline-item.right { left: 0; }
-    .content { flex-direction: column !important; text-align: center; }
+    .timeline {
+        padding: 10px 0;
+    }
+
+    .timeline-item {
+        margin-bottom: 30px; /* Menor espaço entre cards no celular */
+    }
+
+    .content {
+        padding: 15px;
+        max-width: 320px; /* Card ligeiramente menor no celular */
+        /* flex-direction: column continua ativo, mantendo vertical */
+    }
+
+    .content img {
+        max-width: 290px; /* Foto ajustada para o card menor */
+    }
+
+    .content .date {
+        font-size: 0.75rem; /* Data ainda menor no celular */
+    }
+
+    .content p {
+        font-size: 1rem; /* Texto ajustado para celular */
+    }
 }
 
 /* --- NOVO ESTILO: Slideshow Pilha 3D --- */
