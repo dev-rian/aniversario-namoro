@@ -1,7 +1,6 @@
 // --- LÓGICA DO PLAYER SPOTIFY COM PLAYLIST ---
 
 // 1. Crie sua playlist aqui! 
-// Se quiser capas diferentes, mude o caminho da imagem. Se for a mesma, repita o arquivo.
 const playlist = [
     {
         title: "Minha Namorada",
@@ -44,6 +43,10 @@ const cover = document.getElementById('spin-cover');
 const titleText = document.getElementById('song-title');
 const artistText = document.getElementById('song-artist');
 
+// NOVOS ELEMENTOS DOS ÍCONES PARA O IPHONE
+const iconPlay = document.getElementById('icon-play');
+const iconPause = document.getElementById('icon-pause');
+
 let currentSongIndex = 0; // Começa na primeira música (posição 0)
 let isPlaying = false;
 
@@ -55,19 +58,31 @@ function loadSong(song) {
     cover.src = song.cover;
 }
 
-// Função para dar Play
+// Função para dar Play (Corrigida para o iPhone)
 function playSong() {
     isPlaying = true;
     audio.play();
-    playBtn.innerHTML = '⏸';
+    
+    // Esconde o Play, mostra o Pause
+    if(iconPlay && iconPause) {
+        iconPlay.style.display = 'none';
+        iconPause.style.display = 'block';
+    }
+    
     cover.classList.add('playing');
 }
 
-// Função para dar Pause
+// Função para dar Pause (Corrigida para o iPhone)
 function pauseSong() {
     isPlaying = false;
     audio.pause();
-    playBtn.innerHTML = '▶';
+    
+    // Esconde o Pause, mostra o Play
+    if(iconPlay && iconPause) {
+        iconPlay.style.display = 'block';
+        iconPause.style.display = 'none';
+    }
+    
     cover.classList.remove('playing');
 }
 
